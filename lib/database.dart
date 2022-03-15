@@ -5,7 +5,7 @@ class MyDatabase {
   static DatabaseReference db = FirebaseDatabase.instance.ref('Properties');
   static String dataKey = '';
 
-  static Future insertData(String title , String desc, String name, String area, String price, String contact) async{
+  static Future insertData(String title , String desc, String name, String area, String price, String contact, String image) async{
 
     dataKey = db.push().key!;
 
@@ -16,16 +16,17 @@ class MyDatabase {
       'area': area,
       'price': price,
       'contact': contact,
-      'key': dataKey,
-    });
-  }
-
-  static updateData(String image, String dataKey){
-    db.child(dataKey).update({
       'image': image,
       'key': dataKey,
     });
   }
+
+  // static updateData(String image, String dataKey){
+  //   db.child(dataKey).update({
+  //     'image': image,
+  //     'key': dataKey,
+  //   });
+  // }
 
   // static deleteData(String key){
   //   db.child(key).remove();

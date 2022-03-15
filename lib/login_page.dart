@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'database.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -7,12 +9,12 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-Color maroon = Colors.red.shade900;
+Color navyblue = Colors.blueGrey;
 
 class _LoginPageState extends State<LoginPage> {
-  String errorUsername = '';
+  String? errorUsername;
 
-  String errorPassword = '';
+  String? errorPassword;
 
   TextEditingController usernameController = TextEditingController();
 
@@ -22,48 +24,22 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.red.shade50,
-        appBar: AppBar(
-          backgroundColor: maroon,
-          toolbarHeight: 75,
-          title: const Text(
-            "GharDekho.com",
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+        body: Container(
+          height: double.infinity,
+          decoration: BoxDecoration(
+            image: DecorationImage(image: AssetImage("asset/bg.jpg"), fit: BoxFit.fitHeight , opacity: 0.8),
           ),
-          elevation: 10,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 15),
-              child: GestureDetector(
-                child: const CircleAvatar(
-                  radius: 22,
-                  backgroundColor: Colors.white,
-                  child: CircleAvatar(
-                    radius: 20,
-                    backgroundImage: AssetImage("asset/user.png"),
-                  ),
-                ),
-                onTap: () {},
-              ),
-            ),
-          ],
-        ),
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(50),
-            child: SingleChildScrollView(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(60),
               child: Column(
                 children: [
                   const CircleAvatar(
-                    radius: 77,
-                    backgroundColor: Colors.white,
+                    radius: 90,
+                    backgroundColor: Colors.blueGrey,
                     child: CircleAvatar(
-                      radius: 70,
-                      backgroundColor: Colors.black12,
+                      radius: 85,
+                      backgroundColor: Colors.black45,
                       foregroundImage: AssetImage("asset/villa.png"),
                     ),
                   ),
@@ -99,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.only(top: 30),
                     child: MaterialButton(
-                      color: maroon,
+                      color: navyblue,
                       height: 45,
                       padding: const EdgeInsets.only(left: 30, right: 30),
                       elevation: 10,
@@ -114,6 +90,9 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       onPressed: () {
+                        MyDatabase.selectData().then((value) {
+                          setState(() {});
+                        });
                         Navigator.pushNamed(context, 'second');
                       },
                     ),
@@ -127,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(
                           decoration: TextDecoration.underline,
                           fontSize: 14,
-                          color: Colors.black,
+                          color: Colors.white,
                         ),
                       ),
                     ),

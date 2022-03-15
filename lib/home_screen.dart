@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_main/login_page.dart';
 
+import 'database.dart';
+
 GlobalKey<FormState> key = GlobalKey<FormState>();
 GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -186,18 +188,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    super.initState();
     tabController = TabController(length: 3, vsync: this);
   }
 
   @override
   Widget build(BuildContext context) {
+    print('-----${MyDatabase.data}');
     return SafeArea(
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Colors.red.shade50,
         drawer: Drawer(
-          backgroundColor: maroon,
+          backgroundColor: navyblue,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -207,7 +208,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ),
         ),
         appBar: AppBar(
-          backgroundColor: maroon,
+          backgroundColor: navyblue,
           leading: IconButton(
             onPressed: () {
               scaffoldKey.currentState!.openDrawer();
@@ -216,174 +217,199 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             color: Colors.white,
           ),
           title: const Text(
-            "Home",
+            "GharDekho.com",
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 22,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
             textAlign: TextAlign.center,
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 15),
-              child: GestureDetector(
-                child: const CircleAvatar(
-                  backgroundColor: Colors.white,
-                  radius: 22,
-                  child: CircleAvatar(
-                    radius: 20,
-                    backgroundImage: AssetImage("asset/user.png"),
-                  ),
-                ),
-                onTap: () {},
-              ),
-            ),
-          ],
+          // actions: [
+          //   Padding(
+          //     padding: const EdgeInsets.only(right: 15),
+          //     child: GestureDetector(
+          //       child: const CircleAvatar(
+          //         backgroundColor: Colors.white,
+          //         radius: 22,
+          //         child: CircleAvatar(
+          //           radius: 20,
+          //           backgroundImage: AssetImage("asset/user.png"),
+          //         ),
+          //       ),
+          //       onTap: () {},
+          //     ),
+          //   ),
+          // ],
         ),
-        body: TabBarView(controller: tabController, children: [
-          Center(
-            child: ListView.builder(
-                itemCount: data['buy'].length,
-                itemBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.all(4),
-                      child: ListTile(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        tileColor: maroon,
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 30,
-                          child: CircleAvatar(
-                            backgroundImage:
-                                NetworkImage('${data['buy'][index]['image']}'),
-                            radius: 26.5,
-                          ),
-                        ),
-                        title: Padding(
-                          padding: const EdgeInsets.only(top: 10, bottom: 10),
-                          child: Text(
-                            "${data['buy'][index]['title']} (${data['buy'][index]['area']})",
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        // subtitle: Padding(
-                        //   padding: const EdgeInsets.all(5),
-                        //   child: Text(
-                        //     "${data['buy'][index]['desc']}",
-                        //     style: TextStyle(
-                        //       color: Colors.white,
-                        //       fontSize: 10,
-                        //     ),
-                        //     maxLines: 2,
-                        //     textWidthBasis: TextWidthBasis.parent,
-                        //     overflow: TextOverflow.ellipsis,
-                        //   ),
-                        // ),
-                        trailing: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Text(
-                            "${data['buy'][index]['price']}",
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    )),
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(image: AssetImage("asset/bg2.jpg"), fit: BoxFit.fitHeight, opacity: 0.3),
           ),
-          Center(
-            child: ListView.builder(
-              itemCount: data['rent'].length,
-                itemBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.all(4),
-                      child: ListTile(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        tileColor: maroon,
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 30,
-                          child: CircleAvatar(
-                            backgroundImage:
-                                NetworkImage('${data['rent'][index]['image']}'),
-                            radius: 26.5,
+          child: TabBarView(controller: tabController, children: [
+            Center(
+              child: ListView.builder(
+                  itemCount: data['buy'].length,
+                  itemBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.all(4),
+                        child: ListTile(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                        ),
-                        title: Padding(
-                          padding: const EdgeInsets.only(top: 10,bottom: 10),
-                          child: Text(
-                            "${data['rent'][index]['title']} (${data['rent'][index]['area']})",
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                          tileColor: navyblue,
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 30,
+                            child: CircleAvatar(
+                              backgroundImage:
+                                  NetworkImage('${data['buy'][index]['image']}'),
+                              radius: 26.5,
+                            ),
+                          ),
+                          title: Padding(
+                            padding: const EdgeInsets.only(top: 10, bottom: 10),
+                            child: Text(
+                              "${data['buy'][index]['title']} (${data['buy'][index]['area']})",
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          // subtitle: Padding(
+                          //   padding: const EdgeInsets.all(5),
+                          //   child: Text(
+                          //     "${data['buy'][index]['desc']}",
+                          //     style: TextStyle(
+                          //       color: Colors.white,
+                          //       fontSize: 10,
+                          //     ),
+                          //     maxLines: 2,
+                          //     textWidthBasis: TextWidthBasis.parent,
+                          //     overflow: TextOverflow.ellipsis,
+                          //   ),
+                          // ),
+                          trailing: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Text(
+                              "${data['buy'][index]['price']}",
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
-                        // subtitle: Padding(
-                        //   padding: const EdgeInsets.all(5),
-                        //   child: Text(
-                        //     "${data['rent'][index]['desc']}",
-                        //     style: TextStyle(
-                        //       color: Colors.white,
-                        //       fontSize: 10,
-                        //     ),
-                        //     maxLines: 2,
-                        //     textWidthBasis: TextWidthBasis.parent,
-                        //     overflow: TextOverflow.ellipsis,
-                        //   ),
-                        // ),
-                        trailing: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Text(
-                            "${data['rent'][index]['price']}",
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                      )),
+            ),
+            Center(
+              child: ListView.builder(
+                itemCount: data['rent'].length,
+                  itemBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.all(4),
+                        child: ListTile(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          tileColor: navyblue,
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 30,
+                            child: CircleAvatar(
+                              backgroundImage:
+                                  NetworkImage('${data['rent'][index]['image']}'),
+                              radius: 26.5,
+                            ),
+                          ),
+                          title: Padding(
+                            padding: const EdgeInsets.only(top: 10,bottom: 10),
+                            child: Text(
+                              "${data['rent'][index]['title']} (${data['rent'][index]['area']})",
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          // subtitle: Padding(
+                          //   padding: const EdgeInsets.all(5),
+                          //   child: Text(
+                          //     "${data['rent'][index]['desc']}",
+                          //     style: TextStyle(
+                          //       color: Colors.white,
+                          //       fontSize: 10,
+                          //     ),
+                          //     maxLines: 2,
+                          //     textWidthBasis: TextWidthBasis.parent,
+                          //     overflow: TextOverflow.ellipsis,
+                          //   ),
+                          // ),
+                          trailing: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Text(
+                              "${data['rent'][index]['price']}",
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
+                      )),
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: MyDatabase.data.length,
+                        itemBuilder: (context, index) =>
+                            ListTile(
+                              tileColor: navyblue,
+                              leading: CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 30,
+                                child: CircleAvatar(
+                                  backgroundImage:
+                                  NetworkImage(MyDatabase.data[index]['image']),
+                                  radius: 26.5,
+                                ),
+                              ),
+                              title: textStyle(label: MyDatabase.data[index]['title']),
+                              trailing: textStyle(label: MyDatabase.data[index]['price']),
+                            ),
                       ),
-                    )),
-          ),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      FloatingActionButton(
-                        elevation: 10,
-                        backgroundColor: maroon,
-                        child: const Icon(Icons.add, color: Colors.white,size: 30),
-                        onPressed: () {
-                          Navigator.pushNamed(context, 'third');
-                        },
-                      ),
-                    ],
-                  ),
-                ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        FloatingActionButton(
+                          elevation: 10,
+                          backgroundColor: navyblue,
+                          child: const Icon(Icons.add, color: Colors.white,size: 30),
+                          onPressed: () {
+                            Navigator.pushNamed(context, 'third');
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ]),
+          ]),
+        ),
         bottomNavigationBar: Container(
-          color: maroon,
+          color: navyblue,
           child: TabBar(
-            unselectedLabelColor: Colors.grey,
+            unselectedLabelColor: Colors.white54,
             labelColor: Colors.white,
             indicatorColor: Colors.white,
             controller: tabController,
@@ -427,7 +453,7 @@ Widget drawerItem({String label = ''}) {
 
 Widget textStyle({String label = ''}) {
   return Padding(
-    padding: const EdgeInsets.all(5),
+    padding: const EdgeInsets.all(10),
     child: (Text(
       label,
       style: const TextStyle(

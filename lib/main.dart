@@ -20,11 +20,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryIconTheme: IconThemeData(color: maroon),
-        primarySwatch: Colors.red,
-        backgroundColor: Colors.red.shade50,
-        brightness: Brightness.light,
-        primaryColor: Colors.black,
+        iconTheme: IconThemeData(color: Colors.blueGrey,opacity: 100),
+        colorScheme: ColorScheme(
+            brightness: Brightness.dark,
+            primary: navyblue,
+            onPrimary: Colors.blueGrey,
+            secondary: Colors.blueGrey.shade300,
+            onSecondary: Colors.white,
+            error: Colors.blueGrey.shade700,
+            onError: Colors.blueGrey.shade700,
+            background: Colors.blueGrey.shade300,
+            onBackground: Colors.blueGrey.shade300,
+            surface: Colors.blueGrey,
+            onSurface: Colors.blueGrey),
       ),
       initialRoute: 'first',
       routes: {
