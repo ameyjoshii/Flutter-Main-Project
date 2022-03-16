@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project_main/login_page.dart';
+import 'package:flutter_project_main/register.dart';
 import 'package:flutter_project_main/sell_page.dart';
 
 import 'home_screen.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         'first': (context) => const LoginPage(),
         'second': (context) => const HomeScreen(),
         'third': (context) => const SellPage(),
+        'fourth': (context) => const Register(),
       },
     );
   }

@@ -77,7 +77,7 @@ class _SellPageState extends State<SellPage> {
           height: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("asset/bg3.png"),
+              image: AssetImage("asset/bg3.png"),
               fit: BoxFit.fitHeight,
               opacity: 0.6,
             ),
@@ -150,7 +150,7 @@ class _SellPageState extends State<SellPage> {
                     ),
                     onChanged: (val) {
                       setState(() {
-                        errorTitle = val.isEmpty ? 'Enter Title' : '';
+                        errorTitle = val.isEmpty ? 'Enter Title' : null;
                       });
                     },
                     controller: titleController,
@@ -164,7 +164,7 @@ class _SellPageState extends State<SellPage> {
                     ),
                     onChanged: (val) {
                       setState(() {
-                        errorDesc = val.isEmpty ? 'Enter Description' : '';
+                        errorDesc = val.isEmpty ? 'Enter Description' : null;
                       });
                     },
                     controller: descController,
@@ -179,7 +179,7 @@ class _SellPageState extends State<SellPage> {
                     ),
                     onChanged: (val) {
                       setState(() {
-                        errorName = val.isEmpty ? 'Enter Name' : '';
+                        errorName = val.isEmpty ? 'Enter Name' : null;
                       });
                     },
                     controller: nameController,
@@ -194,8 +194,9 @@ class _SellPageState extends State<SellPage> {
                     ),
                     onChanged: (val) {
                       setState(() {
-                        errorArea =
-                            val.isEmpty ? 'Enter area of property in Sqft' : '';
+                        errorArea = val.isEmpty
+                            ? 'Enter area of property in Sqft'
+                            : null;
                       });
                     },
                     controller: areaController,
@@ -210,7 +211,7 @@ class _SellPageState extends State<SellPage> {
                     ),
                     onChanged: (val) {
                       setState(() {
-                        errorPrice = val.isEmpty ? 'Enter Price' : '';
+                        errorPrice = val.isEmpty ? 'Enter Price' : null;
                       });
                     },
                     controller: priceController,
@@ -227,7 +228,7 @@ class _SellPageState extends State<SellPage> {
                       setState(() {
                         errorContact = (val.length != 10 || val.isEmpty)
                             ? 'Enter Valid Contact Number'
-                            : '';
+                            : null;
                       });
                     },
                     controller: contactController,
@@ -262,10 +263,8 @@ class _SellPageState extends State<SellPage> {
                         );
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         MyDatabase.selectData().then((value) {
-                            setState(() {});
+                          Navigator.pop(context);
                         });
-                        setState(() {});
-                        Navigator.pushNamedAndRemoveUntil(context, 'second', (route) => false);
                       },
                       child: const Text(
                         "SUBMIT",

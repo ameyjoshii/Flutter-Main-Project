@@ -13,11 +13,9 @@ Color navyblue = Colors.blueGrey;
 
 class _LoginPageState extends State<LoginPage> {
   String? errorUsername;
-
   String? errorPassword;
 
   TextEditingController usernameController = TextEditingController();
-
   TextEditingController passwordController = TextEditingController();
 
   @override
@@ -52,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     onChanged: (val) {
                       setState(() {
-                        errorUsername = val.isEmpty ? 'Enter Valid Username' : '';
+                        errorUsername = val.isEmpty ? 'Enter Valid Username' : null;
                       });
                     },
                     controller: usernameController,
@@ -67,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                     onChanged: (val) {
                       setState(() {
                         errorPassword =
-                            val.isEmpty ? 'Enter Correct Password' : '';
+                            val.isEmpty ? 'Enter Correct Password' : null;
                       });
                     },
                     controller: passwordController,
@@ -90,9 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       onPressed: () {
-                        MyDatabase.selectData().then((value) {
-                          setState(() {});
-                        });
+                        MyDatabase.selectData();
                         Navigator.pushNamed(context, 'second');
                       },
                     ),
@@ -100,7 +96,9 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, 'fourth');
+                      },
                       child: const Text(
                         "New User? Click here to register",
                         style: TextStyle(
