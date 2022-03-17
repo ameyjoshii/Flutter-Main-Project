@@ -57,7 +57,7 @@ class _SellPageState extends State<SellPage> {
       child: Scaffold(
         key: scaffoldKey,
         appBar: AppBar(
-          backgroundColor: navyblue,
+          backgroundColor: navyBlue,
           title: const Text(
             "Fill Details",
             style: TextStyle(
@@ -75,7 +75,7 @@ class _SellPageState extends State<SellPage> {
         ),
         body: Container(
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage("asset/bg3.png"),
               fit: BoxFit.fitHeight,
@@ -104,10 +104,10 @@ class _SellPageState extends State<SellPage> {
                           uploadImage();
                         },
                         elevation: 20,
-                        child: Text("Select Image"),
+                        child: const Text("Select Image"),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
-                          side: BorderSide(color: Colors.white, width: 4),
+                          side: const BorderSide(color: Colors.white, width: 4),
                         ),
                       ),
                       // MaterialButton(
@@ -236,7 +236,7 @@ class _SellPageState extends State<SellPage> {
                   Padding(
                     padding: const EdgeInsets.only(top: 15),
                     child: MaterialButton(
-                      color: navyblue,
+                      color: navyBlue,
                       elevation: 10,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -246,7 +246,7 @@ class _SellPageState extends State<SellPage> {
                             titleController.text,
                             descController.text,
                             nameController.text,
-                            areaController.text + " Sqft",
+                            areaController.text + " sqft",
                             "₹" + priceController.text,
                             contactController.text,
                             imgURL);
@@ -259,7 +259,7 @@ class _SellPageState extends State<SellPage> {
                             ),
                           ),
                           elevation: 10,
-                          backgroundColor: navyblue,
+                          backgroundColor: navyBlue,
                         );
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         MyDatabase.selectData().then((value) {

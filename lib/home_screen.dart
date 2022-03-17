@@ -23,6 +23,8 @@ Map data = {
       'Global Lifestyle is a well planned development spread over 2 acres designed with a perspective to keep you amidst green ambience for healthy living. Located in the heart of IT corridor at Hinjawadi, easily accessible from Mumbai Pune Expressway, this project boast 2BHK apartments in Ground + 17 storey building with breathtaking views of the landscape & surroundings.Sample flat ready.50% Construction completed.',
       'image':
       'https://img.staticmb.com/mbimages/project/Photo_h0_w320/2018/07/18/Project-Photo-1-Global-Lifestyle-Pune-5092844_1200_1200_0_320.jpg',
+      'name':'Rakesh Shah',
+      'contact':'5013230200',
       'price': '₹61.3 Lac',
       'area': '691 sqft',
     },
@@ -34,6 +36,8 @@ Map data = {
       'https://img.staticmb.com/mbimages/project/Photo_h0_w320/2021/03/11/Project-Photo-31-Gateway-Towers-Pune-5031075_603_877_0_320.JPG',
       'area': '4887 sqft',
       'price': '₹6.56 Cr',
+      'name':'Ramesh Joshi',
+      'contact':'5823120452',
     },
     {
       'title': '2 BHK Flat for Sale Rahul Arcus, in Baner',
@@ -43,6 +47,8 @@ Map data = {
       'https://img.staticmb.com/mbimages/project/Photo_h0_w320/2020/06/01/Project-Photo-43-Rahul-Arcus-Pune-5118283_720_1280_0_320.jpg',
       'area': '932 sqft',
       'price': '₹1.04 Cr',
+      'name':'Mayank Seth',
+      'contact':'8384152465',
     },
     {
       'title': '2 BHK Flat for Sale Dreamland Allure, in Wagholi',
@@ -52,6 +58,8 @@ Map data = {
       'https://img.staticmb.com/mbimages/project/Photo_h0_w320/2021/07/07/Project-Photo-39-Dreamland-Allure-Pune-5086772_600_800_0_320.jpg',
       'area': '759 sqft',
       'price': '₹44.5 Lac',
+      'name':'Shalini Singh',
+      'contact':'6634751278',
     },
     {
       'title': '1 BHK Flat for Sale Oxy Desire, in Wagholi',
@@ -61,6 +69,8 @@ Map data = {
       'https://img.staticmb.com/mbimages/project/Photo_h0_w320/2018/10/22/Project-Photo-52-Oxy-Desire-Pune-5072120_617_1024_0_320.jpg',
       'area': '462 sqft',
       'price': '₹26 Lac',
+      'name':'Punyaja Mishra',
+      'contact':'9451235648',
     },
     {
       'title': '1 BHK Flat for Sale Shriyans, in Punawale, Pimpri Chinchwad',
@@ -70,6 +80,8 @@ Map data = {
       'https://img.staticmb.com/mbimages/project/Photo_h310_w462/Project-Photo-12-Silveroak-Shriyans-Pune-5031658_494_924_310_462.jpg',
       'area': '492 sqft',
       'price': '₹36.4 Lac',
+      'name':'Megha Anand',
+      'contact':'4512375856',
     },
     {
       'title': '1 BHK Flat for Sale Radhe Krishna, in Viman Nagar',
@@ -79,6 +91,8 @@ Map data = {
       'https://img.staticmb.com/mbimages/project/Photo_h310_w462/2022/02/21/Project-Photo-17-Radhe-Krishna-Pune-5298959_1200_1600_310_462.jpg',
       'area': '568 sqft',
       'price': '₹67 Lac',
+      'name': 'Shivam Panchal',
+      'contact':'5542175752',
     },
     {
       'title': '2 BHK Flat for Sale Little Earth, in Ravet, Pimpri Chinchwad',
@@ -88,6 +102,8 @@ Map data = {
       'https://img.staticmb.com/mbimages/project/Photo_h310_w462/2020/12/07/Project-Photo-10-Little-Earth-Pune-5082354_600_800_310_462.jpg',
       'area': '429 sqft',
       'price': '₹42.2 Lac',
+      'name':'Pratik Ramchandani',
+      'contact':'6748153795',
     },
     {
       'title': '2 BHK Flat for Sale Aryavat, in Ravet, Pimpri Chinchwad',
@@ -97,6 +113,8 @@ Map data = {
       'https://img.staticmb.com/mbimages/project/Photo_h310_w462/2021/10/12/Project-Photo-21-Aryavat-Pune-5148319_1500_2000_310_462.jpg',
       'area': '622 sqft',
       'price': '₹51.5 Lac',
+      'name':'Rutvik Patel',
+      'contact':'8475956213',
     },
     {
       'title': '3 BHK Flat for Sale Trinity Greens, in Wakad',
@@ -106,6 +124,8 @@ Map data = {
       'https://img.staticmb.com/mbimages/project/Photo_h310_w462/2019/07/11/Project-Photo-3-Trinity-Greens-Pune-5124863_600_800_310_462.jpg',
       'area': '782 sqft',
       'price': '₹76.5 Lac',
+      'name':'Abhijeet Dubey',
+      'contact':'7548412535',
     },
     {
       'title': '3 BHK Flat for Sale Emirus, in Laxman Nagar-Baner, Baner',
@@ -115,6 +135,8 @@ Map data = {
       'https://img.staticmb.com/mbphoto/property/cropped_images/2021/Nov/25/Photo_h180_w240/58170369_2_creenshot_7(2)_180_240.jpg',
       'area': '1818 sqft',
       'price': '₹3.40 Cr',
+      'name':'Deepak Maheshwari',
+      'contact':'5475785856',
     },
   ],
   'rent': [
@@ -126,6 +148,8 @@ Map data = {
       'https://img.staticmb.com/mbimages/project/Photo_h310_w462/2020/02/12/Project-Photo-13-Panchshil-Towers-Pune-5019803_962_1920_310_462.jpg',
       'price': '₹65,000',
       'area': '1661 sqft',
+      'name':'Rudra Patel',
+      'contact':'5454253511',
     },
     {
       'title': '1 BHK Apartment for Rent in Adreno Towers, Amanora Park Town',
@@ -135,6 +159,8 @@ Map data = {
       'https://img.staticmb.com/mbimages/project/Photo_h0_w320/Project-Photo-28-Adreno-Towers-Pune-5083674_506_800_0_320.jpg',
       'price': '₹18,000',
       'area': '585 sqft',
+      'name': 'Nil Patel',
+      'contact':'5547585621',
     },
     {
       'title': '2 BHK Apartment for Rent in Rohan Abhilasha, Wagholi',
@@ -144,6 +170,8 @@ Map data = {
       'https://img.staticmb.com/mbimages/project/Photo_h310_w462/Project-Photo-68-Rohan-Abhilasha-Pune-5070314_600_800_310_462.jpg',
       'price': '₹14,499',
       'area': '805 sqft',
+      'name':'Sagar Panchal',
+      'contact':'6858495757',
     },
     {
       'title': '2 BHK Apartment for Rent in Hadapsar',
@@ -152,6 +180,8 @@ Map data = {
       'https://img.staticmb.com/mbphoto/property/cropped_images/2022/Jan/13/Photo_h180_w240/58959593_10_PropertyImage648-2643824758276_180_240.jpg',
       'price': '₹15,000',
       'area': '740 sqft',
+      'name':'Madhav Seth',
+      'contact':'5014757260',
     },
     {
       'title': '2 BHK Apartment for Rent in The Cliff Garden, Hinjewadi',
@@ -161,6 +191,8 @@ Map data = {
       'https://img.staticmb.com/mbphoto/property/cropped_images/2022/Feb/24/Photo_h180_w240/47535339_2_PropertyImage680-9798767615447_180_240.jpg',
       'price': '₹15,000',
       'area': '610 sqft',
+      'name':'Preeti Reddy',
+      'contact':'8754696925',
     },
     {
       'title': '1 BHK Apartment for Rent in 48 East Park, Hadapsar',
@@ -170,6 +202,8 @@ Map data = {
       'https://img.staticmb.com/mbphoto/property/cropped_images/2022/Jan/06/Photo_h180_w240/58755807_3_PropertyImage784-5740750003552_180_240.jpg',
       'price': '₹9,500',
       'area': '423 sqft',
+      'name':'Sarthak Rathi',
+      'contact':'7575411100',
     },
     {
       'title':
@@ -180,6 +214,8 @@ Map data = {
       'https://img.staticmb.com/mbphoto/property/cropped_images/2022/Jan/13/Photo_h180_w240/58955769_6_PropertyImage872-6534307047364_180_240.jpg',
       'price': '₹10,500',
       'area': '450 sqft',
+      'name':'Divya Kohli',
+      'contact':'7576611201',
     },
   ],
 };
@@ -189,10 +225,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    MyDatabase.selectData().then((value) {
-      setState(() {});
-    });
     tabController = TabController(length: 3, vsync: this);
+    Timer(const Duration(seconds: 2), (){
+      MyDatabase.selectData().then((value) {
+        setState(() {});
+      });
+    });
   }
 
   @override
@@ -202,7 +240,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       child: Scaffold(
         key: scaffoldKey,
         drawer: Drawer(
-          backgroundColor: navyblue,
+          backgroundColor: navyBlue,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -212,7 +250,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ),
         ),
         appBar: AppBar(
-          backgroundColor: Colors.blue.shade900,
+          backgroundColor: navyBlue,
           leading: IconButton(
             onPressed: () {
               scaffoldKey.currentState!.openDrawer();
@@ -261,10 +299,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       Padding(
                         padding: const EdgeInsets.all(4),
                         child: ListTile(
+                          onTap: (){
+                            Navigator.pushNamed(context, 'fifth', arguments: data['buy'][index]);
+                          },
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          tileColor: navyblue,
+                          tileColor: navyBlue,
                           leading: CircleAvatar(
                             backgroundColor: Colors.white,
                             radius: 30,
@@ -308,10 +349,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       Padding(
                         padding: const EdgeInsets.all(4),
                         child: ListTile(
+                          onTap: (){
+                            Navigator.pushNamed(context, 'fifth', arguments: data['rent'][index]);
+                          },
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          tileColor: navyblue,
+                          tileColor: navyBlue,
                           leading: CircleAvatar(
                             backgroundColor: Colors.white,
                             radius: 30,
@@ -359,15 +403,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           Padding(
                             padding: const EdgeInsets.all(4),
                             child: ListTile(
+                              onTap: (){
+                                Navigator.pushNamed(context, 'fifth', arguments: MyDatabase.data[index]);
+                              },
                               onLongPress: () {
                                 showDialog(
                                   context: context,
                                   builder: (context) =>
                                       AlertDialog(
-                                        backgroundColor: navyblue,
+                                        backgroundColor: navyBlue,
                                         elevation: 10,
                                         title: tileText(label: "Warning!!"),
-                                        content: Text("Delete Item?"),
+                                        content: const Text("Delete Item?"),
                                         actions: [
                                           TextButton(
                                             onPressed: () {
@@ -388,7 +435,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         ],
                                       ),
                                 ).then((value) {
-                                  Timer(Duration(seconds: 3), () {
+                                  Timer(const Duration(seconds: 2), () {
                                     setState(() {});
                                   });
                                 });
@@ -396,7 +443,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              tileColor: navyblue,
+                              tileColor: navyBlue,
                               leading: CircleAvatar(
                                 backgroundColor: Colors.white,
                                 radius: 30,
@@ -421,12 +468,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     padding: const EdgeInsets.only(bottom: 10),
                     child: FloatingActionButton(
                       elevation: 10,
-                      backgroundColor: Colors.blue.shade300,
+                      backgroundColor: navyBlue,
                       child:
                       const Icon(Icons.add, color: Colors.white, size: 30),
                       onPressed: () {
                         Navigator.pushNamed(context, 'third').then((value) {
-                          Timer(Duration(seconds: 3), () {
+                          Timer(const Duration(seconds: 2), () {
                             setState(() {});
                           });
                         });
@@ -439,7 +486,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ]),
         ),
         bottomNavigationBar: Container(
-          color: Colors.blue.shade900,
+          color: navyBlue,
           child: TabBar(
             unselectedLabelColor: Colors.black54,
             labelColor: Colors.white,

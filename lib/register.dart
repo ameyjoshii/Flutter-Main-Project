@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_main/login_page.dart';
+import 'package:flutter_project_main/preferences.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -12,6 +13,8 @@ class _RegisterState extends State<Register> {
   String? usernameError;
   String? passError;
   String? confirmPassError;
+  bool pass = true;
+  bool cPass = true;
   TextEditingController usernameController = TextEditingController();
   TextEditingController passController = TextEditingController();
 
@@ -29,7 +32,7 @@ class _RegisterState extends State<Register> {
           ),
         ),
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("asset/bg3.png"),fit: BoxFit.fill, opacity: 0.3,
             ),
@@ -40,8 +43,8 @@ class _RegisterState extends State<Register> {
               children: [
                 TextField(
                   decoration: InputDecoration(
-                    label: Text("Choose Username"),
-                    prefixIcon: Icon(Icons.account_box),
+                    label: const Text("Choose Username"),
+                    prefixIcon: const Icon(Icons.account_box),
                     errorText: usernameError,
                   ),
                   onChanged: (val){
@@ -60,9 +63,19 @@ class _RegisterState extends State<Register> {
                   controller: usernameController,
                 ),
                 TextField(
+                  obscureText: pass,
                   decoration: InputDecoration(
-                    label: Text("New Password"),
-                    prefixIcon: Icon(Icons.password_rounded),
+                    label: const Text("New Password"),
+                    prefixIcon: const Icon(Icons.password_rounded),
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          pass = !pass;
+                        });
+                      },
+                      icon: Icon(
+                          pass ? Icons.visibility_off : Icons.visibility),
+                    ),
                     errorText: passError,
                   ),
                   onChanged: (val){
@@ -73,9 +86,19 @@ class _RegisterState extends State<Register> {
                   controller: passController,
                 ),
                 TextField(
+                  obscureText: cPass,
                   decoration: InputDecoration(
-                    label: Text("Confirm Password"),
-                    prefixIcon: Icon(Icons.password_rounded),
+                    label: const Text("Confirm Password"),
+                    prefixIcon: const Icon(Icons.password_rounded),
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          cPass = !cPass;
+                        });
+                      },
+                      icon: Icon(
+                          cPass ? Icons.visibility_off : Icons.visibility),
+                    ),
                     errorText: confirmPassError,
                   ),
                   onChanged: (val){
@@ -87,15 +110,35 @@ class _RegisterState extends State<Register> {
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: MaterialButton(
-                      color: navyblue,
+                      color: navyBlue,
                       elevation: 10,
                       height: 40,
                       child: styledText(label: "Register"),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      onPressed: (){
-
+                      onPressed: () {
+                        Preferences.addData(
+                            key: 'username',
+                            value: usernameController.text,
+                        );
+                        Preferences.addData(
+                          key: 'pass',
+                          value: passController.text,
+                        );
+                        final snackBar = SnackBar(
+                          content: const Text(
+                            "You have been registered successfully.",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                            ),
+                          ),
+                          elevation: 10,
+                          backgroundColor: navyBlue,
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        Navigator.pop(context);
                       }
                   ),
                 ),
@@ -111,7 +154,7 @@ class _RegisterState extends State<Register> {
 Widget styledText({String label = ''}) {
   return (
       Text(label,
-        style: TextStyle(
+        style: const TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 20,
           color: Colors.white,

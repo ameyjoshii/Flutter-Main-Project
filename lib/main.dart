@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_project_main/details_page.dart';
 import 'package:flutter_project_main/login_page.dart';
+import 'package:flutter_project_main/preferences.dart';
 import 'package:flutter_project_main/register.dart';
 import 'package:flutter_project_main/sell_page.dart';
 
@@ -8,6 +10,7 @@ import 'home_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Preferences.initPrefs();
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
@@ -24,7 +27,7 @@ class MyApp extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.blueGrey,opacity: 100),
         colorScheme: ColorScheme(
             brightness: Brightness.dark,
-            primary: navyblue,
+            primary: navyBlue,
             onPrimary: Colors.blueGrey,
             secondary: Colors.blueGrey.shade300,
             onSecondary: Colors.white,
@@ -41,6 +44,7 @@ class MyApp extends StatelessWidget {
         'second': (context) => const HomeScreen(),
         'third': (context) => const SellPage(),
         'fourth': (context) => const Register(),
+        'fifth': (context) => const DetailsPage(),
       },
     );
   }

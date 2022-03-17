@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project_main/preferences.dart';
 
 import 'database.dart';
 
@@ -9,11 +10,12 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-Color navyblue = Colors.blueGrey;
+Color navyBlue = Colors.blueGrey;
 
 class _LoginPageState extends State<LoginPage> {
   String? errorUsername;
   String? errorPassword;
+  bool pass = true;
 
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -24,8 +26,11 @@ class _LoginPageState extends State<LoginPage> {
       child: Scaffold(
         body: Container(
           height: double.infinity,
-          decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage("asset/bg.jpg"), fit: BoxFit.fitHeight , opacity: 0.8),
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("asset/bg.jpg"),
+                fit: BoxFit.fitHeight,
+                opacity: 0.8),
           ),
           child: SingleChildScrollView(
             child: Padding(
@@ -50,16 +55,27 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     onChanged: (val) {
                       setState(() {
-                        errorUsername = val.isEmpty ? 'Enter Valid Username' : null;
+                        errorUsername =
+                            val.isEmpty ? 'Enter Valid Username' : null;
                       });
                     },
                     controller: usernameController,
                   ),
                   TextField(
                     keyboardType: TextInputType.name,
+                    obscureText: pass,
                     decoration: InputDecoration(
                       label: const Text("Password"),
                       prefixIcon: const Icon(Icons.password_rounded),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            pass = !pass;
+                          });
+                        },
+                        icon: Icon(
+                            pass ? Icons.visibility_off : Icons.visibility),
+                      ),
                       errorText: errorPassword,
                     ),
                     onChanged: (val) {
@@ -73,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.only(top: 30),
                     child: MaterialButton(
-                      color: navyblue,
+                      color: navyBlue,
                       height: 45,
                       padding: const EdgeInsets.only(left: 30, right: 30),
                       elevation: 10,
@@ -88,8 +104,17 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       onPressed: () {
-                        MyDatabase.selectData();
-                        Navigator.pushNamed(context, 'second');
+
+                      //  String? userName =   Preferences.getData(key: 'username');
+                      //  String? pass =   Preferences.getData(key: 'pass')!;
+
+                        if (usernameController.text == Preferences.getData(key: 'username')
+                                &&
+                            passwordController.text ==
+                                Preferences.getData(key: 'pass')) {
+                          Navigator.pushNamed(context, 'second');
+                          MyDatabase.selectData();
+                        }
                       },
                     ),
                   ),
