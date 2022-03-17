@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ameyjoshi.flutter_project_main">
    <application
-        android:label="flutter_project_main"
+        android:label="Housify"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        iconTheme: IconThemeData(color: Colors.blueGrey,opacity: 100),
+        iconTheme: const IconThemeData(color: Colors.blueGrey,opacity: 100),
         colorScheme: ColorScheme(
             brightness: Brightness.dark,
             primary: navyBlue,
