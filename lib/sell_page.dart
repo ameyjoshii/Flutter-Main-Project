@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'database.dart';
@@ -14,14 +15,8 @@ class SellPage extends StatefulWidget {
 }
 
 GlobalKey<FormState> key = GlobalKey<FormState>();
-GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
 class _SellPageState extends State<SellPage> {
-  String? errorTitle;
-  String? errorName;
-  String? errorPrice;
-  String? errorArea;
-  String? errorDesc;
   String? errorContact;
   TextEditingController titleController = TextEditingController();
   TextEditingController nameController = TextEditingController();
@@ -55,7 +50,6 @@ class _SellPageState extends State<SellPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        key: scaffoldKey,
         appBar: AppBar(
           backgroundColor: navyBlue,
           title: const Text(
@@ -85,197 +79,183 @@ class _SellPageState extends State<SellPage> {
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(25),
-                child: Column(children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 75,
-                    child: CircleAvatar(
-                      radius: 70,
-                      backgroundImage: NetworkImage(imgURL),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      MaterialButton(
-                        onPressed: () {
-                          uploadImage();
-                        },
-                        elevation: 20,
-                        child: const Text("Select Image"),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          side: const BorderSide(color: Colors.white, width: 4),
-                        ),
+              child: Form(
+                key: key,
+                child: Padding(
+                  padding: const EdgeInsets.all(25),
+                  child: Column(children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 75,
+                      child: CircleAvatar(
+                        radius: 70,
+                        backgroundImage: NetworkImage(imgURL),
                       ),
-                      // MaterialButton(
-                      //   onPressed: () {
-                      //     MyDatabase.updateData(
-                      //       imgURL,
-                      //       MyDatabase.dataKey,
-                      //     ).then((value) {
-                      //       setState(() {});
-                      //     });
-                      //   },
-                      //   elevation: 20,
-                      //   child: Text("Update"),
-                      //   shape: RoundedRectangleBorder(
-                      //     borderRadius: BorderRadius.circular(20),
-                      //     side: BorderSide(color: maroon, width: 4),
-                      //   ),
-                      // ),
-                      // MaterialButton(
-                      //   onPressed: () {
-                      //     MyDatabase.selectData().then((value) {
-                      //       setState(() {});
-                      //     });
-                      //   },
-                      //   elevation: 20,
-                      //   child: Text("Load Data"),
-                      //   shape: RoundedRectangleBorder(
-                      //     borderRadius: BorderRadius.circular(20),
-                      //     side: BorderSide(color: maroon, width: 4),
-                      //   ),
-                      // ),
-                    ],
-                  ),
-                  TextField(
-                    keyboardType: TextInputType.name,
-                    decoration: InputDecoration(
-                      label: const Text("Title"),
-                      prefixIcon: const Icon(Icons.house_outlined),
-                      errorText: errorTitle,
                     ),
-                    onChanged: (val) {
-                      setState(() {
-                        errorTitle = val.isEmpty ? 'Enter Title' : null;
-                      });
-                    },
-                    controller: titleController,
-                  ),
-                  TextField(
-                    keyboardType: TextInputType.name,
-                    decoration: InputDecoration(
-                      label: const Text("Description"),
-                      prefixIcon: const Icon(Icons.description_outlined),
-                      errorText: errorDesc,
-                    ),
-                    onChanged: (val) {
-                      setState(() {
-                        errorDesc = val.isEmpty ? 'Enter Description' : null;
-                      });
-                    },
-                    controller: descController,
-                  ),
-                  TextField(
-                    keyboardType: TextInputType.name,
-                    decoration: InputDecoration(
-                      label: const Text("Owner Name"),
-                      prefixIcon:
-                          const Icon(Icons.supervised_user_circle_outlined),
-                      errorText: errorName,
-                    ),
-                    onChanged: (val) {
-                      setState(() {
-                        errorName = val.isEmpty ? 'Enter Name' : null;
-                      });
-                    },
-                    controller: nameController,
-                  ),
-                  TextField(
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      label: const Text("Area of Property (Sqft)"),
-                      prefixIcon: const Icon(Icons.architecture),
-                      suffixText: "Sqft",
-                      errorText: errorArea,
-                    ),
-                    onChanged: (val) {
-                      setState(() {
-                        errorArea = val.isEmpty
-                            ? 'Enter area of property in Sqft'
-                            : null;
-                      });
-                    },
-                    controller: areaController,
-                  ),
-                  TextField(
-                    keyboardType: TextInputType.name,
-                    decoration: InputDecoration(
-                      label: const Text("Price (₹)"),
-                      prefixIcon:
-                          const Icon(Icons.account_balance_wallet_outlined),
-                      errorText: errorPrice,
-                    ),
-                    onChanged: (val) {
-                      setState(() {
-                        errorPrice = val.isEmpty ? 'Enter Price' : null;
-                      });
-                    },
-                    controller: priceController,
-                  ),
-                  TextField(
-                    keyboardType: TextInputType.number,
-                    maxLength: 10,
-                    decoration: InputDecoration(
-                      label: const Text("Contact Number"),
-                      prefixIcon: const Icon(Icons.phone),
-                      errorText: errorContact,
-                    ),
-                    onChanged: (val) {
-                      setState(() {
-                        errorContact = (val.length != 10 || val.isEmpty)
-                            ? 'Enter Valid Contact Number'
-                            : null;
-                      });
-                    },
-                    controller: contactController,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15),
-                    child: MaterialButton(
-                      color: navyBlue,
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      onPressed: () {
-                        MyDatabase.insertData(
-                            titleController.text,
-                            descController.text,
-                            nameController.text,
-                            areaController.text + " sqft",
-                            "₹" + priceController.text,
-                            contactController.text,
-                            imgURL);
-                        final snackBar = SnackBar(
-                          content: const Text(
-                            "Your property is listed for sale.",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                            ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        MaterialButton(
+                          onPressed: () {
+                            uploadImage();
+                          },
+                          elevation: 20,
+                          child: const Text("Select Image"),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side:
+                                const BorderSide(color: Colors.white, width: 4),
                           ),
-                          elevation: 10,
-                          backgroundColor: navyBlue,
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        MyDatabase.selectData().then((value) {
-                          Navigator.pop(context);
+                        ),
+                      ],
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.name,
+                      decoration: const InputDecoration(
+                        label: Text("Title"),
+                        prefixIcon: Icon(Icons.house_outlined),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Contact number is mandatory';
+                        }
+                        return null;
+                      },
+                      controller: titleController,
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.name,
+                      decoration: const InputDecoration(
+                        label: Text("Description"),
+                        prefixIcon: Icon(Icons.description_outlined),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Description is mandatory';
+                        }
+                        return null;
+                      },
+                      controller: descController,
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.name,
+                      decoration: const InputDecoration(
+                        label: Text("Owner Name"),
+                        prefixIcon:
+                            Icon(Icons.supervised_user_circle_outlined),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Owner name is mandatory';
+                        }
+                        return null;
+                      },
+                      controller: nameController,
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        label: Text("Area of Property (Sqft)"),
+                        prefixIcon: Icon(Icons.architecture),
+                        suffixText: "Sqft",
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Area is mandatory';
+                        }
+                        return null;
+                      },
+                      controller: areaController,
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.name,
+                      decoration: const InputDecoration(
+                        label: Text("Price (₹)"),
+                        prefixIcon:
+                            Icon(Icons.account_balance_wallet_outlined),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Price is mandatory';
+                        }
+                        return null;
+                      },
+                      controller: priceController,
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.number,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                      ],
+                      maxLength: 10,
+                      decoration: InputDecoration(
+                        label: const Text("Contact Number"),
+                        prefixIcon: const Icon(Icons.phone),
+                        errorText: errorContact,
+                      ),
+                      onChanged: (val) {
+                        setState(() {
+                          errorContact = (val.length != 10 || val.isEmpty)
+                              ? 'Enter Valid Contact Number'
+                              : null;
                         });
                       },
-                      child: const Text(
-                        "SUBMIT",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Contact number is mandatory';
+                        }
+                        return null;
+                      },
+                      controller: contactController,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: MaterialButton(
+                        color: navyBlue,
+                        elevation: 10,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        onPressed: () {
+                          if (key.currentState!.validate()) {
+                            MyDatabase.insertData(
+                              titleController.text,
+                              descController.text,
+                              nameController.text,
+                              areaController.text + " sqft",
+                              "₹" + priceController.text,
+                              contactController.text,
+                              imgURL,
+                            );
+                            final snackBar = SnackBar(
+                              content: const Text(
+                                "Your property is listed for sale.",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              elevation: 10,
+                              backgroundColor: navyBlue,
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                            MyDatabase.selectData().then((value) {
+                              Navigator.pop(context);
+                            });
+                          }
+                        },
+                        child: const Text(
+                          "SUBMIT",
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ]),
+                  ]),
+                ),
               ),
             ),
           ),

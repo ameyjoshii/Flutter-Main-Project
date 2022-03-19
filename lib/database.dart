@@ -1,15 +1,16 @@
-import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_project_main/login_page.dart';
 
 class MyDatabase {
   static List<Map> data = [];
-  static DatabaseReference db = FirebaseDatabase.instance.ref('Properties');
-  static String dataKey = '';
+  static List<Map> allData = [];
+  static CollectionReference sellFirestore =
+      FirebaseFirestore.instance.collection('Sell');
 
   static insertData(String title, String desc, String name, String area,
       String price, String contact, String image) {
-    dataKey = db.push().key!;
-
-    db.child(dataKey).set({
+    String key = DateTime.now().toString();
+    sellFirestore.doc(key).set({
       'title': title,
       'desc': desc,
       'name': name,
@@ -17,7 +18,8 @@ class MyDatabase {
       'price': price,
       'contact': contact,
       'image': image,
-      'key': dataKey,
+      'user': userEmail,
+      'key':key,
     });
   }
 
@@ -29,18 +31,27 @@ class MyDatabase {
   // }
 
   static Future deleteData(String key) async {
-    db.child(key).remove().then((value) => selectData());
+    sellFirestore.doc(key).delete().then((value) {
+      selectData();
+    });
   }
 
   static Future selectData() async {
-    Map temp = {};
-    db.once().then((value) {
-      temp = value.snapshot.value != null ? value.snapshot.value as Map : {};
+    sellFirestore.where('user', isEqualTo: userEmail).get().then((value) {
       data.clear();
-      temp.forEach((key, value) {
-        data.add(value);
+      value.docs.forEach((element) {
+        data.add(element.data() as Map);
       });
-      return data;
+    });
+  }
+
+  static Future selectAllData() async {
+    sellFirestore.get().then((value) {
+      allData.clear();
+      value.docs.forEach((element) {
+        Map temp = element.data() as Map;
+        if (userEmail != temp['user']) allData.add(temp);
+      });
     });
   }
 }

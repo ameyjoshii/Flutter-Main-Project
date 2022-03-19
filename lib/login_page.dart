@@ -1,7 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project_main/preferences.dart';
+import 'package:flutter_project_main/register.dart';
 
-import 'database.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -11,14 +12,38 @@ class LoginPage extends StatefulWidget {
 }
 
 Color navyBlue = Colors.blueGrey;
+String userEmail = '';
 
 class _LoginPageState extends State<LoginPage> {
-  String? errorUsername;
+  String? errorEmail;
   String? errorPassword;
   bool pass = true;
+  bool success = false;
 
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passController = TextEditingController();
+
+  login() async {
+    User? user = (await auth.signInWithEmailAndPassword(
+            email: emailController.text, password: passController.text))
+        .user;
+
+    if (user != null) {
+      userEmail = user.email.toString();
+      loginClick();
+      setState(() {
+        success = true;
+      });
+    } else {
+      setState(() {
+        success = false;
+      });
+    }
+  }
+
+  loginClick() {
+    Preferences.addData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,17 +74,16 @@ class _LoginPageState extends State<LoginPage> {
                   TextField(
                     keyboardType: TextInputType.name,
                     decoration: InputDecoration(
-                      label: const Text("Username"),
+                      label: const Text("Email"),
                       prefixIcon: const Icon(Icons.account_box),
-                      errorText: errorUsername,
+                      errorText: errorEmail,
                     ),
                     onChanged: (val) {
                       setState(() {
-                        errorUsername =
-                            val.isEmpty ? 'Enter Valid Username' : null;
+                        errorEmail = val.isEmpty ? 'Enter Valid Email' : null;
                       });
                     },
-                    controller: usernameController,
+                    controller: emailController,
                   ),
                   TextField(
                     keyboardType: TextInputType.name,
@@ -84,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                             val.isEmpty ? 'Enter Correct Password' : null;
                       });
                     },
-                    controller: passwordController,
+                    controller: passController,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 30),
@@ -103,17 +127,30 @@ class _LoginPageState extends State<LoginPage> {
                           color: Colors.white,
                         ),
                       ),
-                      onPressed: () {
-
-                      //  String? userName =   Preferences.getData(key: 'username');
-                      //  String? pass =   Preferences.getData(key: 'pass')!;
-
-                        if (usernameController.text == Preferences.getData(key: 'username')
-                                &&
-                            passwordController.text ==
-                                Preferences.getData(key: 'pass')) {
-                          Navigator.pushNamed(context, 'second');
-                          MyDatabase.selectData();
+                      onPressed: () async {
+                        try {
+                          await login();
+                          if (success == true) {
+                            Navigator.pushReplacementNamed(context, 'second');
+                          } else {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                                    content: Text(
+                              "Invalid Credentials",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            )));
+                          }
+                        } on FirebaseAuthException {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                                  content: Text(
+                            "Invalid Credentials",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          )));
                         }
                       },
                     ),

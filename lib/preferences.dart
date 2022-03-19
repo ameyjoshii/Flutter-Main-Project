@@ -7,13 +7,13 @@ class Preferences{
     pref = await SharedPreferences.getInstance();
   }
 
-  static Future addData({String value = '', String key = ''}) async{
-    pref!.setString( key, value);
+  static Future addData() async{
+    pref!.setString('login','success');
   }
 
-  static String getData({String key = '',}) {
-    String? msg = pref!.getString(key);
-    return msg??'';
+  static String? getData() {
+    String? msg = pref!.getString('login');
+    return msg;
   }
 
   static dispose(){
