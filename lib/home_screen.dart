@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     tabController = TabController(length: 2, vsync: this);
     MyDatabase.selectData().then((value) {
       MyDatabase.selectAllData().then((value) {
-        Timer(const Duration(seconds: 5), () {
+        Timer(const Duration(seconds: 2), () {
           setState(() {});
         });
       });
